@@ -69,8 +69,13 @@ int main() {
     l = create();
     print_ll(l);
     
-    delete_node(l, 1);
-    printf("After delete nodes with the value of 1\n");
+    int d;
+    printf("Enter the node you want to delete: ");
+    scanf("%d", &d);
+    printf("\n");
+    
+    delete_node(l, d);
+    printf("After deleting nodes with the value of %d \n", d);
     print_ll(l);
     
     return 0;
