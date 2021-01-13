@@ -1,10 +1,10 @@
 /* 
 Delete elements with the same value as the input argument key
-a = Head -> 1 -> 2 -> 1 -> 3 -> NULL
+Head -> 1 -> 2 -> 1 -> 3 -> NULL
 delete_node(a, 1)
 
 Output:
-a = Head -> 2 -> 3 -> NULL
+Head -> 2 -> 3 -> NULL
 */
 
 #include<stdio.h>
