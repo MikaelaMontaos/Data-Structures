@@ -1,7 +1,7 @@
 /* 
 Delete elements with the same value as the input argument key
 Head -> 1 -> 2 -> 1 -> 3 -> NULL
-delete_node(a, 1)
+delete_node(list, 1)
 
 Output:
 Head -> 2 -> 3 -> NULL
