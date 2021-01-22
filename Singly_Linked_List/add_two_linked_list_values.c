@@ -50,18 +50,6 @@ void print_ll(node* l) {
     }
 }
 
-void push(node** head, int val) {
-    node *l = (node*)malloc(sizeof(node));
-    l->data = val;
-    l->next = NULL;
-    if(*head == NULL) *head = l;
-    else {
-        node *c = *head;
-        while(c->next != NULL) c = c->next;
-        c->next = l;
-    }
-}
-
 int get_sz(node* l) {
     int ct = 0;
     node *c = l;
