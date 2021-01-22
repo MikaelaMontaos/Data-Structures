@@ -18,6 +18,7 @@ typedef struct Node {
 } node;
 
 node *create(void) {
+    printf("Enter linked list letters separated by spaces: ");
     char ltr;
     node *head, *cur, *tmp;
     head = cur = (node*)malloc(sizeof(node));
