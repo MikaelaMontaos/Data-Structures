@@ -8,7 +8,7 @@ x - y - z
 x - (y - z - (u + v)) - w
 Output:
 x - y + z + u - v - w
- ***********************************************************/
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
