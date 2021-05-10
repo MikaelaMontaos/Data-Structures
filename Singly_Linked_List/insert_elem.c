@@ -55,7 +55,7 @@ void *insert_elem(node *l, char c, int n) {
     tmp->data = c;
     int cnt = 0;
     cur = l;
-    
+
     if(l != NULL) {
         while(cur->next != NULL && cnt != n) {
             prev = cur;
@@ -80,10 +80,10 @@ void *insert_elem(node *l, char c, int n) {
 int main() {
     node *l = create();
     print(l);
-    
+
     printf("Insert element by index\n");
     insert_elem(l, 'r', 3);
     print(l);
-    
+
     return 0;
 }

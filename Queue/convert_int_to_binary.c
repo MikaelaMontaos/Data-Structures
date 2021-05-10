@@ -75,7 +75,7 @@ int main(void) {
 	insert_que(&q, 4);
 	insert_que(&q, 5);
 	insert_que(&q, 6);
-	insert_que(&q, 7);	
+	insert_que(&q, 7);
 	print_que(&q);
 
 	printf("1-7 binary numbers\n");
