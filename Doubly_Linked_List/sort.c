@@ -1,12 +1,12 @@
-// Delete element by index
+// Sort numbers
 
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node
+typedef struct Node
 {
   int data;
-  struct node *prev, *next;
+  struct Node *prev, *next;
 } node;
 
 node *create(void)
@@ -33,6 +33,7 @@ node *create(void)
 
 void print(node *list)
 {
+  node *head;
   printf("NULL <- Head ");
   while (1)
   {
@@ -48,34 +49,35 @@ void print(node *list)
   }
 }
 
-void delete_by_index(node *list, int index)
+void sort(node *list)
 {
-  if(list == NULL || index < 0) {
+  if (list == NULL)
+  {
     printf("Empty list\n");
     exit(1);
   }
-
-  node *cur, *del;
-  cur = list->next;
-  int count;
-
-  for(count = 0; cur != NULL && count < index; count++)
-    cur = cur->next;
-  
-  if(cur == NULL) {
-    printf("Invalid index\n");
-    exit(1);
+  else
+  {
+    node *cur = list->next;
+    node *nxt;
+    int tmp;
+    
+    while (cur->next != NULL)
+    {
+      nxt = cur->next;
+      while (nxt != NULL)
+      {
+        if (cur->data > nxt->data)
+        {
+          tmp = cur->data;
+          cur->data = nxt->data;
+          nxt->data = tmp;
+        }
+        nxt = nxt->next;
+      }
+      cur = cur->next;
+    }
   }
-
-  if(cur->next != NULL) {
-    del = cur;
-    cur->prev->next = cur->next;
-    cur->next->prev = cur->prev->prev;
-  }
-  else {
-    cur->prev->next = NULL;
-  }
-  free(cur);
 }
 
 int main(void)
@@ -84,8 +86,8 @@ int main(void)
   list = create();
   print(list);
 
-  printf("Delete by index (2) = ");
-  delete_by_index(list, 2);
+  printf("List after sorting: ");
+  sort(list);
   print(list);
 
   return 0;
