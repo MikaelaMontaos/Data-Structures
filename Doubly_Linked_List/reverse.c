@@ -54,7 +54,8 @@ node *reverse(node *list)
   else
   {
     node *cur = list;
-    node *pre = NULL;
+    cur->prev = NULL;
+    node *pre = cur->prev;
     while (cur != NULL)
     {
       cur->prev = cur->next;
