@@ -15,48 +15,47 @@ x - y + z + u - v - w
 
 #define OK 1
 #define ERROR 0
-#define TRUE 0
-#define FALSE -1
 
-typedef int Status;
-typedef char ElemType;
+typedef struct Stack {
+	char data;
+	struct Stack* next;
+} stack;
 
-typedef struct Stack_Node {
-	ElemType data;
-	struct Stack_Node* next;
-} Stk_Node;
-
-Stk_Node* Init_Link_Stack(void) {
-	Stk_Node* top;
-	top = (Stk_Node*)malloc(sizeof(Stk_Node));
+stack* init(void) {
+	stack* top;
+	top = (stack*)malloc(sizeof(stack));
 	top->next = NULL;
+	
 	return (top);
 }
 
-Status push(Stk_Node* top, ElemType e) {
-	Stk_Node* p;
-	p = (Stk_Node*)malloc(sizeof(Stk_Node));
+int push(stack* top, char e) {
+	stack* p;
+	p = (stack*)malloc(sizeof(stack));
 
 	if (!p)
 		return ERROR;
 	p->data = e;
 	p->next = top->next;
 	top->next = p;
+
 	return OK;
 }
 
-Status pop(Stk_Node* top, int e) {
-	Stk_Node* p = top->next;
+int pop(stack* top, int e) {
+	stack* p = top->next;
 	if (top->next == NULL) return ERROR;
 	while (top->next != NULL && e != p->next->data) {
 		p = p->next;
 	}
+
 	p->next = p->next->next;
 	free(p);
+
 	return OK;
 }
 
-void printStkList(Stk_Node* list) {
+void print(stack* list) {
 	while (1) {
 		list = list->next;
 		if (list->next == NULL) {
@@ -67,8 +66,8 @@ void printStkList(Stk_Node* list) {
 	}
 }
 
-void parenthesis(Stk_Node *list) {
-	Stk_Node *p = list->next;
+void parenthesis(stack *list) {
+	stack *p = list->next;
 	if (p == NULL) printf("Empty stack\n");
 	
 	char minus = '-';
@@ -109,39 +108,39 @@ void parenthesis(Stk_Node *list) {
 }
 
 int main(void) {
-	Stk_Node* S = Init_Link_Stack();
-	push(S, ')');
-	push(S, 'z');
-	push(S, '+');
-	push(S, 'y');
-	push(S, '(');
-	push(S, '-');
-	push(S, 'x');
-	printStkList(S);
+	stack* list1 = init();
+	push(list1, ')');
+	push(list1, 'z');
+	push(list1, '+');
+	push(list1, 'y');
+	push(list1, '(');
+	push(list1, '-');
+	push(list1, 'x');
+	print(list1);
 
 	printf("Removing parenthesis and changing operator(s)...\n");
-	parenthesis(S);
+	parenthesis(list1);
 
-	Stk_Node* S2 = Init_Link_Stack();
-	push(S2, 'w');
-	push(S2, '-');
-	push(S2, ')');
-	push(S2, ')');
-	push(S2, 'v');
-	push(S2, '+');
-	push(S2, 'u');
-	push(S2, '(');
-	push(S2, '-');
-	push(S2, 'z');
-	push(S2, '-');
-	push(S2, 'y');
-	push(S2, '(');
-	push(S2, '-');
-	push(S2, 'x');
-	printStkList(S2);
+	stack* list2 = init();
+	push(list2, 'w');
+	push(list2, '-');
+	push(list2, ')');
+	push(list2, ')');
+	push(list2, 'v');
+	push(list2, '+');
+	push(list2, 'u');
+	push(list2, '(');
+	push(list2, '-');
+	push(list2, 'z');
+	push(list2, '-');
+	push(list2, 'y');
+	push(list2, '(');
+	push(list2, '-');
+	push(list2, 'x');
+	print(list2);
 
 	printf("Removing parenthesis and changing operator(s)...\n");
-	parenthesis(S2);
+	parenthesis(list2);
 
 	return 0;
 }

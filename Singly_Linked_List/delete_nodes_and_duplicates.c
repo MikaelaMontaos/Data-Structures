@@ -33,50 +33,49 @@ node *create(void) {
     return(head);
 }
 
-void print_ll(node* l) {
+void print(node* list) {
     printf("Head");
-    while (l->next != NULL) {
+    while (list->next != NULL) {
         printf(" -> ");
-        l = l->next;
-        printf("%d", l->data);
+        list = list->next;
+        printf("%d", list->data);
     }
     printf(" -> NULL\n");
 }
 
-node *delete_dupes(node* l) {
+node *delete_dupes(node* list) {
     node *dmy = (node*)malloc(sizeof(node));
     dmy->data = 0;
-    dmy->next = l;
+    dmy->next = list;
     node *p = dmy;
-    node *h = l;
-    while(l != NULL) {
-        if(l->next != NULL && l->next->data == l->data) {
-            while(l->next != NULL && l->next->data == l->data) {
-                node *tmp = l->next;
-                l->next = tmp->next;
+    while(list != NULL) {
+        if(list->next != NULL && list->next->data == list->data) {
+            while(list->next != NULL && list->next->data == list->data) {
+                node *tmp = list->next;
+                list->next = tmp->next;
                 free(tmp);
             }
-            node *d = l;
+            node *d = list;
             p->next = d->next;
-            l = l->next;
+            list = list->next;
             free(d);
         }
         else {
-            p = l;
-            l = l->next;
+            p = list;
+            list = list->next;
         }
     }
     return(dmy->next);
 }
 
 int main(void) {
-    node *l;
-    l = create();
-    print_ll(l);
+    node *list;
+    list = create();
+    print(list);
     
-    node* n = delete_dupes(l);
+    node* n = delete_dupes(list);
     printf("After deleting duplicates\n");
-    print_ll(n);
+    print(n);
 
     return 0;
 }
