@@ -30,11 +30,25 @@ node* create() {
     return p;
 }
 
-void preorder(node* t) {
-    if (t != NULL) {
-        printf("%d ", t->data);
-        preorder(t->left);
-        preorder(t->right);
+void padding(int e, int n)
+{
+    for (int i = 0; i < n; i++)
+        printf("%d", e);
+}
+
+void print(tree *t, int lvl)
+{
+    if (t == NULL)
+    {
+        padding('\t', lvl);
+        puts(" ");
+    }
+    else
+    {
+        print(t->right, lvl + 1);
+        padding('\t', lvl);
+        printf("%d\n", t->data);
+        print(t->left, lvl + 1);
     }
 }
 
@@ -59,7 +73,7 @@ int ave(node* t) {
 int main() {
     node* root;
     root = create();
-    preorder(root);
+    print(root);
     printf("\n");
 
     printf("The average value is %d", ave(root));
